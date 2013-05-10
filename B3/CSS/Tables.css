@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.tdleft {
+    margin-left: 10px;
+    text-align:left;
+    vertical-align:text-top;
+}
+
+.tdborderbot {
+    margin-left: 10px;
+    text-align:left;
+    vertical-align:text-top;
+    border-bottom:solid;
+    border-bottom-color:darkblue;
+}

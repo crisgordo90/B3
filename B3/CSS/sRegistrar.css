@@ -1,0 +1,25 @@
+﻿body {
+}
+
+.registrar{   
+	width: 432px;
+	height: 185px;
+	top: 80px;
+	left: 290px;
+	position: relative;
+    margin-bottom: 0px;
+}
+
+.lblRegistrar{
+	margin-right: 5px;
+	font-size: 15px;
+	font-weight:bold;
+}
+
+.titulo{
+	margin-top: 20px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 18px;
+	font-weight:bold;
+	color: #00366C;
+}

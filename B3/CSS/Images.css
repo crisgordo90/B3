@@ -1,0 +1,15 @@
+﻿.body {
+    
+}
+
+.fondo {
+    background-image:url(/Images/fondo2.png);
+}
+
+.RegistroImagen{
+    -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+     Height:50px;
+     Width:120px;
+}
