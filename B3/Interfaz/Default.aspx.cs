@@ -12,7 +12,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Web.DynamicData;
 using B3.Clases;
-using System.Data.SqlClient;
+using Oracle.DataAccess.Client;
 
 namespace B3
 {
@@ -49,19 +49,20 @@ namespace B3
         {
             try
              {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("loginCheck", con);
+            query name = new query();
+            OracleConnection con = new OracleConnection(name.OracleConnString()); // C#                
+            OracleCommand cmd = new OracleCommand("loginCheck",con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = txtCorreo.Text;
-            cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = txtContrasena.Text;
-            SqlParameter message = cmd.Parameters.Add("@strMessage", SqlDbType.VarChar, 200);
-            SqlParameter privilegio = cmd.Parameters.Add("@privilegio", SqlDbType.Int);
+            cmd.Parameters.Add("@username", OracleDbType.Varchar2).Value = txtCorreo.Text;
+            cmd.Parameters.Add("@password", OracleDbType.Varchar2).Value = txtContrasena.Text;
+            OracleParameter message = cmd.Parameters.Add("@strMessage", OracleDbType.Varchar2, 200);
+            OracleParameter privilegio = cmd.Parameters.Add("@privilegio", OracleDbType.Int32);
             message.Direction = ParameterDirection.Output;
             privilegio.Direction = ParameterDirection.Output;
             con.Open();
-            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            OracleDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
-            if ((int)cmd.Parameters["@privilegio"].Value != 4)
+            if (Convert.ToInt32(cmd.Parameters["@privilegio"].Value.ToString()) != 4)
             {
                 UserName = txtCorreo.Text;
                 Limpiar();
@@ -70,14 +71,14 @@ namespace B3
                 txtCorreo.Visible = false;
                 LblLogin.Visible = true;
                 LblLogin.Text = cmd.Parameters["@strMessage"].Value.ToString();
-                if ((int)cmd.Parameters["@privilegio"].Value >= 2)
+                if (Convert.ToInt32(cmd.Parameters["@privilegio"].Value.ToString()) >= 2)
                 {
                     btnAgregarLibro.Visible = true;
                     btnAgregarAutor.Visible = true;
                     btnEditarAutor.Visible = true;
                     btnEditarLibro.Visible = true;
                     btnEditarPersona.Visible = true;
-                    if ((int)cmd.Parameters["@privilegio"].Value == 3)
+                    if ((Int32)cmd.Parameters["@privilegio"].Value == 3)
                     {
                         btnConfiguracion.Visible = true;
                         btnBajaLibro.Visible = true;

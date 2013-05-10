@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B3.Clases;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -51,13 +51,14 @@ namespace B3.Interfaz
         {
             try
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                SqlCommand cmd = new SqlCommand("modificar_privilegios", con);
+                query name = new query();
+                OracleConnection con = new OracleConnection(name.OracleConnString());
+                OracleCommand cmd = new OracleCommand("modificar_privilegios", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = ddlNombre.SelectedValue;
-                cmd.Parameters.Add("@privilegio", SqlDbType.VarChar).Value = tipo;
+                cmd.Parameters.Add("@Email", OracleDbType.Varchar2).Value = ddlNombre.SelectedValue;
+                cmd.Parameters.Add("@privilegio", OracleDbType.Varchar2).Value = tipo;
                 con.Open();
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                OracleDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dr.Close();
                 con.Close();
                 Response.Redirect("~/Interfaz/Configuracion.aspx");

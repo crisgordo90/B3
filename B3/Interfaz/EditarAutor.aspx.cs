@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B3.Clases;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -34,14 +34,15 @@ namespace B3.Interfaz
         }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("modificar_autor", con);
+            query name = new query();
+            OracleConnection con = new OracleConnection(name.OracleConnString());
+            OracleCommand cmd = new OracleCommand("modificar_autor", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = txtNombre.Text;
-            cmd.Parameters.Add("@fecha_nac", SqlDbType.VarChar).Value = txtNacimiento.Text;
-            cmd.Parameters.Add("@fecha_fallecimiento", SqlDbType.VarChar).Value = txtFallecimiento.Text;
-            cmd.Parameters.Add("@pais", SqlDbType.VarChar).Value = txtPais.Text;
-            cmd.Parameters.Add("@biografia", SqlDbType.VarChar).Value = txtBiografia.Text;
+            cmd.Parameters.Add("@nombre", OracleDbType.Varchar2).Value = txtNombre.Text;
+            cmd.Parameters.Add("@fecha_nac", OracleDbType.Varchar2).Value = txtNacimiento.Text;
+            cmd.Parameters.Add("@fecha_fallecimiento", OracleDbType.Varchar2).Value = txtFallecimiento.Text;
+            cmd.Parameters.Add("@pais", OracleDbType.Varchar2).Value = txtPais.Text;
+            cmd.Parameters.Add("@biografia", OracleDbType.Varchar2).Value = txtBiografia.Text;
 
             try
             {

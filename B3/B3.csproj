@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -202,6 +203,7 @@
     <Content Include="Interfaz\AgregarAutor.aspx" />
     <Content Include="Interfaz\AgregarLibro.aspx" />
     <Content Include="Interfaz\AgregarPersona.aspx" />
+    <Content Include="Interfaz\AgregarTarjeta.aspx" />
     <Content Include="Interfaz\BajaLibro.aspx" />
     <Content Include="Interfaz\BajaPersona.aspx" />
     <Content Include="Interfaz\Buscar.aspx" />
@@ -273,6 +275,13 @@
     </Compile>
     <Compile Include="Interfaz\AgregarPersona.aspx.designer.cs">
       <DependentUpon>AgregarPersona.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\AgregarTarjeta.aspx.cs">
+      <DependentUpon>AgregarTarjeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaz\AgregarTarjeta.aspx.designer.cs">
+      <DependentUpon>AgregarTarjeta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\BajaLibro.aspx.cs">
       <DependentUpon>BajaLibro.aspx</DependentUpon>

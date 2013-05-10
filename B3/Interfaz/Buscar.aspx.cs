@@ -1,8 +1,9 @@
-﻿using System;
+﻿using B3.Clases;
+using Oracle.DataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,15 +33,20 @@ namespace B3.Interfaz
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("libros_search", con);
+            query name = new query(); 
+            DataSet ds = new DataSet();
+            OracleConnection con = new OracleConnection(name.OracleConnString());
+            OracleCommand cmd = new OracleCommand("libros_search", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@parametro", SqlDbType.VarChar).Value = txtNombre.Text;
+            cmd.Parameters.Add("@parametro", OracleDbType.Varchar2).Value = txtNombre.Text;
+            OracleParameter table = cmd.Parameters.Add("@p_ResultSet", OracleDbType.RefCursor, 200);
+            table.Direction = ParameterDirection.Output;
             con.Open();
-            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            DataTable dt = new DataTable();
-            dt.Load(dr);
-                gvBuscar.DataSource = dt;
+            cmd.ExecuteReader();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(ds);
+
+                gvBuscar.DataSource = ds.Tables[0];
             gvBuscar.DataBind();
             con.Close();
         }

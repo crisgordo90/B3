@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B3.Clases;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -34,13 +34,14 @@ namespace B3.Interfaz
         }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("modificar_libro", con);
+            query name = new query();
+            OracleConnection con = new OracleConnection(name.OracleConnString());
+            OracleCommand cmd = new OracleCommand("modificar_libro", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = txtTitulo.Text;
-            cmd.Parameters.Add("@anio_publicacion", SqlDbType.VarChar).Value = txtAnio.Text;
-            cmd.Parameters.Add("@stock", SqlDbType.VarChar).Value = txtStock.Text;
-            cmd.Parameters.Add("@costo", SqlDbType.VarChar).Value = txtCosto.Text;
+            cmd.Parameters.Add("@titulo", OracleDbType.Varchar2).Value = txtTitulo.Text;
+            cmd.Parameters.Add("@anio_publicacion", OracleDbType.Varchar2).Value = txtAnio.Text;
+            cmd.Parameters.Add("@stock", OracleDbType.Varchar2).Value = txtStock.Text;
+            cmd.Parameters.Add("@costo", OracleDbType.Varchar2).Value = txtCosto.Text;
             try
             {
                 con.Open();

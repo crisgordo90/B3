@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B3.Clases;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -51,12 +51,13 @@ namespace B3.Interfaz
         {
             try
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                SqlCommand cmd = new SqlCommand(text, con);
+                query name = new query();
+                OracleConnection con = new OracleConnection(name.OracleConnString());
+                OracleCommand cmd = new OracleCommand(text, con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = ddlNombre.SelectedValue;
+                cmd.Parameters.Add("@Email", OracleDbType.Varchar2).Value = ddlNombre.SelectedValue;
                 con.Open();
-                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                OracleDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dr.Close();
                 con.Close();
                 Response.Redirect("~/Interfaz/BajaPersona.aspx");
@@ -82,7 +83,7 @@ namespace B3.Interfaz
 
         protected void btnBaja_Click(object sender, EventArgs e)
         {
-            ConfiguracionTipo("desactivar_usuario");
+            ConfiguracionTipo("desac_usuario");
         }
     }
 }

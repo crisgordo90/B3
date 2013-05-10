@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B3.Clases;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -45,15 +45,16 @@ namespace B3.Interfaz
 
             try
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                SqlCommand cmd = new SqlCommand("insertar_Libro", con);
+                 query name = new query();
+                 OracleConnection con = new OracleConnection(name.OracleConnString());
+                OracleCommand cmd = new OracleCommand("insertar_Libro", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@ISBM", SqlDbType.Int).Value = txtISBM.Text;
-                cmd.Parameters.Add("@titulo", SqlDbType.VarChar).Value = txtTitulo.Text;
-                cmd.Parameters.Add("@anio_publicacion", SqlDbType.Int).Value = txtAnio.Text;
-                cmd.Parameters.Add("@stock", SqlDbType.Int).Value = txtStock.Text;
-                cmd.Parameters.Add("@costo", SqlDbType.Int).Value = txtCosto.Text;
-                SqlParameter message = cmd.Parameters.Add("@strMessage", SqlDbType.VarChar, 200);
+                cmd.Parameters.Add("@ISBM", OracleDbType.Int32).Value = txtISBM.Text;
+                cmd.Parameters.Add("@titulo", OracleDbType.Varchar2).Value = txtTitulo.Text;
+                cmd.Parameters.Add("@anio_publicacion", OracleDbType.Int32).Value = txtAnio.Text;
+                cmd.Parameters.Add("@stock", OracleDbType.Int32).Value = txtStock.Text;
+                cmd.Parameters.Add("@costo", OracleDbType.Int32).Value = txtCosto.Text;
+                OracleParameter message = cmd.Parameters.Add("@strMessage", OracleDbType.Varchar2, 200);
                 message.Direction = ParameterDirection.Output;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -81,10 +82,11 @@ namespace B3.Interfaz
         {
                 while (lbxAutor.Items.Count > 0)
                 {
-                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                    SqlCommand cmd = new SqlCommand("insertar_autor_libro", con);
-                    cmd.Parameters.Add("@libro", SqlDbType.Int).Value = txtISBM.Text;
-                    cmd.Parameters.Add("@autor", SqlDbType.Int).Value = lbxAutor.SelectedValue;
+                    query name = new query();
+                    OracleConnection con = new OracleConnection(name.OracleConnString()); 
+                    OracleCommand cmd = new OracleCommand("insertar_autor_libro", con);
+                    cmd.Parameters.Add("@libro", OracleDbType.Int32).Value = txtISBM.Text;
+                    cmd.Parameters.Add("@autor", OracleDbType.Int32).Value = lbxAutor.SelectedValue;
                     cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -97,10 +99,11 @@ namespace B3.Interfaz
         {
             while (lbxTema.Items.Count > 0)
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                SqlCommand cmd = new SqlCommand("insertar_tema_libro", con);
-                cmd.Parameters.Add("@libro", SqlDbType.Int).Value = txtISBM.Text;
-                cmd.Parameters.Add("@theme", SqlDbType.Int).Value = lbxTema.SelectedValue;
+                query name = new query();
+                OracleConnection con = new OracleConnection(name.OracleConnString());
+                OracleCommand cmd = new OracleCommand("insertar_tema_libro", con);
+                cmd.Parameters.Add("@libro", OracleDbType.Int32).Value = txtISBM.Text;
+                cmd.Parameters.Add("@theme", OracleDbType.Int32).Value = lbxTema.SelectedValue;
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 cmd.ExecuteNonQuery();

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using B3.Clases;
 using System.Data;
 using System.Configuration;
-using System.Data.SqlClient;
+using Oracle.DataAccess.Client;
 
 namespace B3.Interfaz
 {
@@ -62,16 +62,17 @@ namespace B3.Interfaz
                 if (UserName != null)
                     if (!UserName.Equals(""))
                     {
-                        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
-                        SqlCommand cmd = new SqlCommand("Insertar_Venta", con);
+                        query name = new query();
+                        OracleConnection con = new OracleConnection(name.OracleConnString());
+                        OracleCommand cmd = new OracleCommand("Insertar_Venta", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@libro", SqlDbType.VarChar).Value = ISBM;
-                        cmd.Parameters.Add("@Comprador", SqlDbType.VarChar).Value = UserName;
-                        cmd.Parameters.Add("@Ventas", SqlDbType.VarChar).Value = txtCantidad.Text;
-                        SqlParameter message = cmd.Parameters.Add("@strMessage", SqlDbType.VarChar, 200);
+                        cmd.Parameters.Add("@libro", OracleDbType.Varchar2).Value = ISBM;
+                        cmd.Parameters.Add("@Comprador", OracleDbType.Varchar2).Value = UserName;
+                        cmd.Parameters.Add("@Ventas", OracleDbType.Varchar2).Value = txtCantidad.Text;
+                        OracleParameter message = cmd.Parameters.Add("@strMessage", OracleDbType.Varchar2, 200);
                         message.Direction = ParameterDirection.Output;
                         con.Open();
-                        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                        OracleDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                         DataTable dt = new DataTable();
                         dt.Load(dr);
                         con.Close();
