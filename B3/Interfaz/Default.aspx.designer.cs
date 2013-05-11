@@ -130,6 +130,24 @@ namespace B3 {
         protected global::System.Web.UI.WebControls.ImageButton btnEditarAutor;
         
         /// <summary>
+        /// Control btnVentas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnVentas;
+        
+        /// <summary>
+        /// Control btnAdeudo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnAdeudo;
+        
+        /// <summary>
         /// Control btnBajaPersona.
         /// </summary>
         /// <remarks>
@@ -182,5 +200,14 @@ namespace B3 {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLibros;
+        
+        /// <summary>
+        /// Control gvBest.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvBest;
     }
 }

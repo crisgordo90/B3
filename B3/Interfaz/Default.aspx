@@ -30,9 +30,14 @@
             <asp:ImageButton ID="btnEditarPersona" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (7).png" OnClick="btnEditarPersona_Click" Visible="false" /><br />
             <asp:ImageButton ID="btnEditarLibro" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (6).png" OnClick="btnEditarLibro_Click"  Visible="false" /><br />
             <asp:ImageButton ID="btnEditarAutor" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (5).png" OnClick="btnEditarAutor_Click"  Visible="false" /><br />
+            <asp:ImageButton ID="btnVentas" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (9).png"   Visible="false" OnClick="btnVentas_Click"  /><br />
+            <asp:ImageButton ID="btnAdeudo" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (10).png"  Visible="false" OnClick="btnAdeudo_Click"  /><br />
             <asp:ImageButton ID="btnBajaPersona" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (4).png" OnClick="btnBajaPersona_Click" Visible="false" /><br />
             <asp:ImageButton ID="btnBajaLibro" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (3).png" OnClick="btnBajaLibro_Click"  Visible="false" /><br />
              <asp:ImageButton ID="btnConfiguracion" runat="server" class="RegistroImagen" ImageUrl="~/Images/banner (8).png" OnClick="btnConfiguracion_Click"  Visible="false" /><br />
+              
+             
+       
         </div>
         <div class="registrar">
     <div class="titulo">Libros</div>
@@ -41,6 +46,14 @@
                     &nbsp;<asp:Label ID="msgError2" class="error" runat="server" Text="" />
         <br/>
             <asp:GridView ID="gvLibros" runat="server">
+            </asp:GridView>
+        </div>
+
+         <br/><br/>
+        <div class="registrar">
+    <div class="titulo">BestSeller</div>
+        <br/>
+            <asp:GridView ID="gvBest" runat="server">
             </asp:GridView>
 
         </div>

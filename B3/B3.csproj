@@ -182,6 +182,7 @@
     <Content Include="CSS\Styles.css" />
     <Content Include="CSS\Tables.css" />
     <Content Include="Images\banner %281%29.png" />
+    <Content Include="Images\banner %2810%29.png" />
     <Content Include="Images\banner %282%29.png" />
     <Content Include="Images\banner %283%29.png" />
     <Content Include="Images\banner %284%29.png" />
@@ -189,6 +190,7 @@
     <Content Include="Images\banner %286%29.png" />
     <Content Include="Images\banner %287%29.png" />
     <Content Include="Images\banner %288%29.png" />
+    <Content Include="Images\banner %289%29.png" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\eliminar.png" />
     <Content Include="Images\Empresa.png" />
@@ -213,6 +215,8 @@
     <Content Include="Interfaz\EditarAutor.aspx" />
     <Content Include="Interfaz\EditarLibro.aspx" />
     <Content Include="Interfaz\EditarPersona.aspx" />
+    <Content Include="Interfaz\Ventas.aspx" />
+    <Content Include="Interfaz\VentasAdeudos.aspx" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -252,6 +256,7 @@
     <Compile Include="Clases\App_Start\BundleConfig.cs" />
     <Compile Include="Clases\cGeneralMetodos.cs" />
     <Compile Include="Clases\query.cs" />
+    <Compile Include="Clases\querySQL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -345,6 +350,20 @@
     </Compile>
     <Compile Include="Interfaz\EditarPersona.aspx.designer.cs">
       <DependentUpon>EditarPersona.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\VentasAdeudos.aspx.cs">
+      <DependentUpon>VentasAdeudos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaz\VentasAdeudos.aspx.designer.cs">
+      <DependentUpon>VentasAdeudos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

@@ -32,6 +32,8 @@ namespace B3
                  query name = new query();
                  gvLibros.DataSource = name.querydt("select * from libros_home");
                  gvLibros.DataBind();
+                 gvBest.DataSource = name.querydt("select * from best_seller");
+                 gvBest.DataBind();
                  
              }
              catch (Exception ex)
@@ -78,6 +80,8 @@ namespace B3
                     btnEditarAutor.Visible = true;
                     btnEditarLibro.Visible = true;
                     btnEditarPersona.Visible = true;
+                    btnAdeudo.Visible = true;
+                    btnVentas.Visible = true;
                     if ((Int32)cmd.Parameters["@privilegio"].Value == 3)
                     {
                         btnConfiguracion.Visible = true;
@@ -176,6 +180,16 @@ namespace B3
          protected void btnComprar_Click(object sender, ImageClickEventArgs e)
          {
              redirect("Buscar");
+         }
+
+         protected void btnVentas_Click(object sender, ImageClickEventArgs e)
+         {
+             redirect("Ventas");
+         }
+
+         protected void btnAdeudo_Click(object sender, ImageClickEventArgs e)
+         {
+             redirect("VentasAdeudos");
          }
     }
 }
